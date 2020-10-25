@@ -77,7 +77,6 @@ router.get("/visualizeDB", function (req, res, next) {
   Launches.find({}).lean().exec(function (e, docs) {
     console.log(docs.length)
     res.end(JSON.stringify(docs));
-
   });
 });
 
@@ -105,15 +104,11 @@ router.get("/clearDB", function (req, res, next) {
 router.get("/byAgency", function (req, res, next) {
   var db = require("../db");
   var selAgencies = req.query.agencies;
-  for (var i of selAgencies.split(',')) {
-    console.log("Oba: " + i)
-  }
-  Launches.find({'agencieName': selAgencies.split(',')[0]}).lean().exec(function (e, docs) {
-    console.log(docs.length)
-    var queryResult = (JSON.stringify(docs));
+  console.log(selAgencies.split(','));
+  var Launches = db.Mongoose.model('launches', db.LaunchSchema, 'launches');
+  Launches.find({'agenciename':   {$in: selAgencies.split(',')}}).lean().exec(function (e, docs) {
+    res.render("test", {'test': JSON.stringify(docs)})
   });
-  res.render("test", {'test': JSON.stringify(queryResult)})
-
 });
 
 module.exports = router;
