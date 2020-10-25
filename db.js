@@ -1,19 +1,9 @@
 const { Int32 } = require("mongodb");
 var mongoose = require("mongoose");
-const db = process.env.MONGODB_URI;
 
-const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true
-    });
-    console.log("MongoDB is Connected...");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};
+const uri = process.env.MONGODB_URI;
+var db = mongoose.connect(uri)
+
 
 var launchSchema = new mongoose.Schema({
     name : String, 			//launches[0]
