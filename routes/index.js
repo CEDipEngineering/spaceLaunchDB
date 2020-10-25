@@ -102,4 +102,14 @@ router.get("/clearDB", function (req, res, next) {
   });
 });
 
+router.get("/byAgency", function (req, res, next) {
+  var db = require("../db");
+  var selAgencies = req.query.agencies;
+  for (var i of selAgencies.split(',')) {
+    console.log("Oba: " + i)
+  }
+  var queryResult = db.articles.find({'agencieName': selAgencies.split(',')[0]}).pretty()
+  res.render("test", {'test': queryResult})
+});
+
 module.exports = router;
