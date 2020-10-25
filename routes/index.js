@@ -108,7 +108,7 @@ router.get("/byAgency", function (req, res, next) {
   for (var i of selAgencies.split(',')) {
     console.log("Oba: " + i)
   }
-  var queryResult = db.articles.find({'agencieName': selAgencies.split(',')[0]}).pretty()
+  var queryResult = db.launches.find({'agencieName': selAgencies.split(',')[0]}).pretty()
   res.render("test", {'test': queryResult})
 });
 
