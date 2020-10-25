@@ -1,6 +1,6 @@
 const { Int32 } = require("mongodb");
 var mongoose = require("mongoose");
-const db = process.env.MONGODB_URL;
+const db = process.env.MONGODB_URI;
 
 const connectDB = async () => {
   try {
