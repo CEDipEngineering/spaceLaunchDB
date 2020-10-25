@@ -10,6 +10,7 @@ router.get('/', function (req, res, next) {
 /*  GET launch and fill db */
 router.get("/updateDB", function (req, res, next) {
   var db = require("../db")
+  res.render("update");
   for (let i = 0; i<19; i++){
     fetch("https://ll.thespacedevs.com/2.0.0/launch/?limit=100&offset=" + 100*i).then(response => response.json()).then(data => {
       for (let i = 0; i < data.results.length; i++) {
@@ -67,6 +68,7 @@ router.get("/updateDB", function (req, res, next) {
       }
     });
   }
+  // res.redirect("/visualizeDB")
 });
 
 router.get("/visualizeDB", function (req, res, next) {
