@@ -1,6 +1,6 @@
 const { Int32 } = require("mongodb");
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/spacLaunchDB");
+mongoose.connect("process.env.MONGODB_URI || mongodb://localhost:27017/spacLaunchDB");
 
 var launchSchema = new mongoose.Schema({
     name : String, 			//launches[0]
