@@ -108,7 +108,8 @@ router.get("/byAgency", function (req, res, next) {
   for (var i of selAgencies.split(',')) {
     console.log("Oba: " + i)
   }
-  var queryResult = db.launches.find({'agencieName': selAgencies.split(',')[0]}).pretty()
+  var Launches = db.Mongoose.model('launches', db.LaunchSchema, 'launches');
+  var queryResult = Launches.find({'agencieName': selAgencies.split(',')[0]}).pretty()
   res.render("test", {'test': queryResult})
 });
 
