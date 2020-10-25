@@ -39,7 +39,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-const port = process.env.PORT || 3000;
-app.listen(port);
+// const port = process.env.PORT || 3000;
+// app.listen(port);
 
 module.exports = app;
