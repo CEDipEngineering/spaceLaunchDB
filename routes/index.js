@@ -24,14 +24,14 @@ router.get("/updateDB", function (req, res, next) {
         const holdreason = rootDir.holdreason;
         const failreason = rootDir.failreason;
         const mapurl = rootDir.pad.map_url;
-        const padname = rootDir.pad.name;
+        const padName = rootDir.pad.name;
         const agencyName = rootDir.launch_service_provider.name;
         const rocketImage = rootDir.image;
   
         if (rootDir.mission){
           var missionName = rootDir.mission.name;
           var missionDescription = rootDir.mission.description;
-          var missionType = rootDir.mission.typeName;
+          var missionType = rootDir.mission.type;
         } else {
           var missionName = null;
           var missionDescription = null;
@@ -42,18 +42,18 @@ router.get("/updateDB", function (req, res, next) {
         var launch = new Launches({
           name: name, 			//launches[0]
           id: id,			//launches[0]
-          launchtime: launchTime, 		//launches[0]
+          launchTime: launchTime, 		//launches[0]
           status: status, 			//launches[0]
           tbddate: tbddate, 			//launches[0] 
-          holdreason: holdreason,  		//launches[0]
-          failreason: failreason, 		//launches[0]
+          holdReason: holdreason,  		//launches[0]
+          failReason: failreason, 		//launches[0]
           mapurl: mapurl, 		//launches[0] -> location -> pads[0]
-          padname: padname,  		//launches[0] -> location -> pads[0]
-          agenciename: agencyName, 			//launches[0] -> location -> pads[0] -> agencies[0]
+          padName: padName,  		//launches[0] -> location -> pads[0]
+          agencyName: agencyName, 			//launches[0] -> location -> pads[0] -> agencies[0]
           imageurl: rocketImage,  		//launches[0] -> rocket 
-          missioname: missionName,  		//launches[0] -> missions[0] -> name
-          missiondescription: missionDescription,     //launches[0] -> missions[0] -> name
-          missiontype: missionType, 		//launches[0] -> missions[0] -> name
+          missionName: missionName,  		//launches[0] -> missions[0] -> name
+          missionDescription: missionDescription,     //launches[0] -> missions[0] -> name
+          missionType: missionType, 		//launches[0] -> missions[0] -> name
         });
   
         launch.save(function (err) {
@@ -101,12 +101,19 @@ router.get("/clearDB", function (req, res, next) {
   });
 });
 
-router.get("/byAgency", function (req, res, next) {
+router.get("/filter", function (req, res, next) {
   var db = require("../db");
   var selAgencies = req.query.agencies;
-  console.log(selAgencies.split(','));
+  var rocketName = req.query.rocketname;
+  var rocketStatus = req.query.rocketStatus;
+  var missionName = req.query.missionname;
   var Launches = db.Mongoose.model('launches', db.LaunchSchema, 'launches');
-  Launches.find({'agenciename':   {$in: selAgencies.split(',')}}).lean().exec(function (e, docs) {
+  Launches.find(
+    {'agencyName':   {$in: selAgencies.split(',')},
+     'name': rocketName,
+     'status' : rocketStatus,
+     'missionName' : missionName
+  }).lean().exec(function (e, docs) {
     res.render("test", {'test': JSON.stringify(docs)})
   });
 });
