@@ -1,7 +1,7 @@
 const { Int32 } = require("mongodb");
 var mongoose = require("mongoose");
 
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || "mongodb://localhost:27017/spaceLaunchDB";
 var db = mongoose.connect(uri)
 
 
