@@ -107,9 +107,13 @@ router.get("/filter", function (req, res, next) {
   var rocketName = req.query.rocketName;
   var rocketStatus = req.query.rocketStatus;
   var missionName = req.query.missionName;
+  var page  = req.query.page;
+  const pageSize = 10;
 
   console.log('\n');
-
+  if (!page){
+    page = 0;
+  }
   if (selAgencies) {
     selAgencies = selAgencies.split(',');
     for (let i = 0; i<selAgencies.length;i++) {
@@ -176,8 +180,9 @@ router.get("/filter", function (req, res, next) {
         { 'missionName': { $in: missionName } }
       ]}    
     ]
-  }).lean().exec(function (e, docs) {
-    res.render("test", {'test': JSON.stringify(docs)})
+  }).skip(page*pageSize).limit(pageSize).lean().exec(function (e, docs) {
+    res.json(docs);
+    // res.render("test", {'test': JSON.stringify(docs), 'size': docs.length})
   });
 });
 
