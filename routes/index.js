@@ -5,6 +5,7 @@ const visualize = require('./visualize');
 const update = require('./update');
 const clear = require('./clear');
 const _filter = require('./filter');
+const findById = require('./id');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -22,6 +23,11 @@ router.get("/clearDB", clear);
 
 /*  Returns portions of the db, filtered by parameters of fetch*/
 router.get("/filter", _filter);
+
+/* Get one rocket's info by searching for his id */
+router.get("/id", findById);
+
+
 
 // /*  Test api fetch */
 // router.get("/testNewAPI", function (req, res, next) {
