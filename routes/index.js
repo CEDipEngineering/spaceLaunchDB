@@ -6,7 +6,7 @@ const update = require("./update");
 const clear = require("./clear");
 const _filter = require("./filter");
 const findById = require("./id");
-const getAgencyAndNameList = require("./getAgencyAndNameList");
+const getAgencyAndNameList = require("./getAgencyList");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
