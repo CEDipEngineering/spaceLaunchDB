@@ -1,31 +1,38 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 const fetch = require("node-fetch");
-const visualize = require('./visualize');
-const update = require('./update');
-const clear = require('./clear');
-const _filter = require('./filter');
-const findById = require('./id');
+const visualize = require("./visualize");
+const update = require("./update");
+const clear = require("./clear");
+const _filter = require("./filter");
+const findById = require("./id");
+const getAgencyAndNameList = require("./getAgencyAndNameList");
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get("/", function (req, res, next) {
+  res.render("index", { title: "Express" });
 });
 
 /* Visualizes database */
-router.get('/visualizeDB', visualize);
+router.get("/visualize", visualize);
 
 /*  GET launch and fill db */
-router.get("/updateDB", update);
+router.get("/update", update);
 
 /*  Delete all data from db */
-router.get("/clearDB", clear);
+router.get("/clear", clear);
 
 /*  Returns portions of the db, filtered by parameters of fetch*/
 router.get("/filter", _filter);
 
-/* Get one rocket's info by searching for his id */
+/* Get one rocket"s info by searching for his id */
 router.get("/id", findById);
+
+/* Retrieve full list of agencies and rocketNames*/
+router.get("/listAgencyName", getAgencyAndNameList);
+
+
+
 
 
 
