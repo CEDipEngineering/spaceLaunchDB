@@ -6,19 +6,25 @@ function getAgencyAndNameList(req, res, next) {
     Launches.find({}).lean().exec(function (e, docs) {
         let out = {
             "agencies" : [],
-            "names" : []    
+            "names" : [],
+            "missions" : []    
         }
         let currName;
         let currAgency;
+        let currMission;
         for (let comp of docs) {
             currName = comp.name.split("|")[0];
             currAgency = comp.agencyName;
+            currMission = comp.name.split("|")[1];
 
             if (currName && !(out.names.includes(currName))) {
                 out.names.push(currName);
             }
             if (currAgency && !(out.agencies.includes(currAgency))) {
                 out.agencies.push(currAgency);
+            }          
+            if (currMission && !(out.missions.includes(currMission))) {
+                out.missions.push(currMission);
             }          
         }
         
