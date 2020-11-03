@@ -14,11 +14,16 @@ function update(req, res, next) {
           const tbddate = rootDir.tbddate;
           const holdreason = rootDir.holdreason;
           const failreason = rootDir.failreason;
-          const mapurl = rootDir.pad.map_url;
           const padName = rootDir.pad.name;
           const agencyName = rootDir.launch_service_provider.name;
           const rocketImage = rootDir.image;
     
+          if(rootDir.pad.map_url) {
+            const mapurl = rootDir.pad.map_url;
+          } else {
+            const mapurl = "https://i.ibb.co/Hnf1PP8/Rocket.jpg";
+          }
+
           if (rootDir.mission){
             var missionName = rootDir.mission.name;
             var missionDescription = rootDir.mission.description;
