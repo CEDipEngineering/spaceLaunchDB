@@ -19,9 +19,9 @@ function update(req, res, next) {
           const rocketImage = rootDir.image;
     
           if(rootDir.pad.map_url) {
-            const mapurl = rootDir.pad.map_url;
+            var mapurl = rootDir.pad.map_url;
           } else {
-            const mapurl = "https://i.ibb.co/Hnf1PP8/Rocket.jpg";
+            var mapurl = "https://i.ibb.co/Hnf1PP8/Rocket.jpg";
           }
 
           if (rootDir.mission){
