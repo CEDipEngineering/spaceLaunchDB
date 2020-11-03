@@ -16,12 +16,12 @@ function update(req, res, next) {
           const failreason = rootDir.failreason;
           const padName = rootDir.pad.name;
           const agencyName = rootDir.launch_service_provider.name;
-          const rocketImage = rootDir.image;
-    
-          if(rootDir.pad.map_url) {
-            var mapurl = rootDir.pad.map_url;
+          const mapurl = rootDir.pad.map_url;
+          var rocketImage;
+          if(rootDir.image) {
+            rocketImage = rootDir.image;
           } else {
-            var mapurl = "https://i.ibb.co/Hnf1PP8/Rocket.jpg";
+            rocketImage = "https://i.ibb.co/Hnf1PP8/Rocket.jpg";
           }
 
           if (rootDir.mission){
