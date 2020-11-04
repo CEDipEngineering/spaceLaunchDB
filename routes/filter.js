@@ -5,7 +5,7 @@ function filter(req, res, next) {
     var rocketStatus = req.query.rocketStatus;
     var missionName = req.query.missionName;
     var page  = req.query.page;
-    const pageSize = 10;
+    const pageSize = 12;
   
     console.log('\n');
     if (!page){
