@@ -7,6 +7,7 @@ const clear = require("./clear");
 const _filter = require("./filter");
 const findById = require("./id");
 const getAgencyAndNameList = require("./getAgencyList");
+const upcoming = require("./upcoming");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -31,7 +32,8 @@ router.get("/id", findById);
 /* Retrieve full list of agencies and rocketNames*/
 router.get("/listAgencyName", getAgencyAndNameList);
 
-
+/* Retrieve full list of agencies and rocketNames*/
+router.get("/upcoming", upcoming);
 
 
 
