@@ -63,7 +63,7 @@ function update(req, res, next) {
           // res.end(JSON.stringify(data));
         }
         res.render("update");
-      });
+      }).catch((e)=>console.log(e));
     }
     // res.redirect("/visualizeDB")
   };
